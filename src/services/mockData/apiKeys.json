@@ -34,11 +34,32 @@
     "projectIds": [1, 2],
     "addedAt": "2024-02-05T16:30:00Z"
   },
-  {
+{
     "Id": 6,
     "provider": "anthropic",
     "keyHash": "sk-ant-backup345uvw678ghi901jkl234mno567pqr890stu123vwx",
     "projectIds": [3, 6],
     "addedAt": "2024-02-10T13:45:00Z"
+  },
+  {
+    "Id": 7,
+    "provider": "grok",
+    "keyHash": "xai-grok-abc123def456ghi789jkl012mno345pqr678stu901vwx234",
+    "projectIds": [1, 4],
+    "addedAt": "2024-02-15T10:30:00Z"
+  },
+  {
+    "Id": 8,
+    "provider": "llama",
+    "keyHash": "meta-llama-def456ghi789jkl012mno345pqr678stu901vwx234abc",
+    "projectIds": [2, 5, 6],
+    "addedAt": "2024-02-18T14:15:00Z"
+  },
+  {
+    "Id": 9,
+    "provider": "perplexity",
+    "keyHash": "pplx-ghi789jkl012mno345pqr678stu901vwx234abc456def",
+    "projectIds": [3, 4, 5],
+    "addedAt": "2024-02-20T16:45:00Z"
   }
 ]

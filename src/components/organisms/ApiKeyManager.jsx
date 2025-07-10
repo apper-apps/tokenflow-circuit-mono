@@ -42,22 +42,28 @@ const ApiKeyManager = () => {
     }
   };
 
-  const getProviderIcon = (provider) => {
+const getProviderIcon = (provider) => {
     const icons = {
       openai: "Brain",
       anthropic: "MessageSquare",
       google: "Search",
-      cohere: "Cpu"
+      cohere: "Cpu",
+      grok: "Zap",
+      llama: "Bot",
+      perplexity: "Globe"
     };
     return icons[provider.toLowerCase()] || "Key";
   };
 
-  const getProviderColor = (provider) => {
+const getProviderColor = (provider) => {
     const colors = {
       openai: "success",
       anthropic: "warning",
       google: "info",
-      cohere: "default"
+      cohere: "default",
+      grok: "info",
+      llama: "success",
+      perplexity: "warning"
     };
     return colors[provider.toLowerCase()] || "default";
   };

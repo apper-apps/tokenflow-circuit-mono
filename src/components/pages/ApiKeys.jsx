@@ -14,11 +14,14 @@ const ApiKeys = () => {
     console.log("Adding new API key...");
   };
 
-  const providers = [
+const providers = [
     { name: "OpenAI", icon: "Brain", description: "GPT-3.5, GPT-4, and more", color: "success" },
     { name: "Anthropic", icon: "MessageSquare", description: "Claude AI models", color: "warning" },
     { name: "Google", icon: "Search", description: "Gemini and PaLM models", color: "info" },
-    { name: "Cohere", icon: "Cpu", description: "Command and Embed models", color: "default" }
+    { name: "Cohere", icon: "Cpu", description: "Command and Embed models", color: "default" },
+    { name: "Grok", icon: "Zap", description: "X AI's conversational AI", color: "info" },
+    { name: "LLAMA", icon: "Bot", description: "Meta's large language models", color: "success" },
+    { name: "Perplexity", icon: "Globe", description: "AI-powered search and answers", color: "warning" }
   ];
 
   return (
@@ -45,7 +48,7 @@ const ApiKeys = () => {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
         {providers.map((provider, index) => (
           <motion.div
             key={provider.name}
