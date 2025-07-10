@@ -156,7 +156,193 @@ return true;
       }
       apiKeys[index].rotation.nextRotation = nextRotation.toISOString();
     }
-    
-    return { ...apiKeys[index] };
+return { ...apiKeys[index] };
+  },
+
+  // API Endpoints compatible with OpenRouter structure
+  createApiEndpoints() {
+    return {
+      async handleGetApiKeys(req, res) {
+        try {
+          const apiKeys = await apiKeyService.getAll();
+          res.status(200).json({
+            object: "list",
+            data: apiKeys,
+            has_more: false
+          });
+        } catch (error) {
+          res.status(500).json({
+            error: {
+              message: error.message,
+              type: "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleGetApiKey(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid API key ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const apiKey = await apiKeyService.getById(id);
+          res.status(200).json(apiKey);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleCreateApiKey(req, res) {
+        try {
+          const apiKey = await apiKeyService.create(req.body);
+          res.status(201).json(apiKey);
+        } catch (error) {
+          res.status(500).json({
+            error: {
+              message: error.message,
+              type: "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleUpdateApiKey(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid API key ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const apiKey = await apiKeyService.update(id, req.body);
+          res.status(200).json(apiKey);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleDeleteApiKey(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid API key ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          await apiKeyService.delete(id);
+          res.status(204).send();
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleEnableRotation(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid API key ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const apiKey = await apiKeyService.enableRotation(id, req.body);
+          res.status(200).json(apiKey);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleDisableRotation(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid API key ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const apiKey = await apiKeyService.disableRotation(id);
+          res.status(200).json(apiKey);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleRotateKeys(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid API key ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const apiKey = await apiKeyService.rotateKeys(id);
+          res.status(200).json(apiKey);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      }
+    };
   }
 };

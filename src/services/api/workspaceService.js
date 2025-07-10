@@ -45,7 +45,119 @@ export const workspaceService = {
     if (index === -1) {
       throw new Error("Workspace not found");
     }
-    workspaces.splice(index, 1);
+workspaces.splice(index, 1);
     return true;
+  },
+
+  // API Endpoints compatible with OpenRouter structure
+  createApiEndpoints() {
+    return {
+      async handleGetWorkspaces(req, res) {
+        try {
+          const workspaces = await workspaceService.getAll();
+          res.status(200).json({
+            object: "list",
+            data: workspaces,
+            has_more: false
+          });
+        } catch (error) {
+          res.status(500).json({
+            error: {
+              message: error.message,
+              type: "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleGetWorkspace(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid workspace ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const workspace = await workspaceService.getById(id);
+          res.status(200).json(workspace);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleCreateWorkspace(req, res) {
+        try {
+          const workspace = await workspaceService.create(req.body);
+          res.status(201).json(workspace);
+        } catch (error) {
+          res.status(500).json({
+            error: {
+              message: error.message,
+              type: "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleUpdateWorkspace(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid workspace ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          const workspace = await workspaceService.update(id, req.body);
+          res.status(200).json(workspace);
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      },
+
+      async handleDeleteWorkspace(req, res) {
+        try {
+          const id = parseInt(req.params.id);
+          if (isNaN(id)) {
+            return res.status(400).json({
+              error: {
+                message: "Invalid workspace ID",
+                type: "invalid_request_error"
+              }
+            });
+          }
+          
+          await workspaceService.delete(id);
+          res.status(204).send();
+        } catch (error) {
+          const status = error.message.includes("not found") ? 404 : 500;
+          res.status(status).json({
+            error: {
+              message: error.message,
+              type: status === 404 ? "not_found_error" : "internal_error"
+            }
+          });
+        }
+      }
+    };
   }
 };
