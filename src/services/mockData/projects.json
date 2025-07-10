@@ -1,0 +1,160 @@
+[
+  {
+    "Id": 1,
+    "workspaceId": 1,
+    "name": "ChatBot Pro",
+    "description": "Advanced customer service chatbot with multi-language support",
+    "apiKeys": [
+      {
+        "provider": "openai",
+        "keyHash": "sk-proj-abc123xyz789"
+      },
+      {
+        "provider": "anthropic",
+        "keyHash": "sk-ant-def456uvw012"
+      }
+    ],
+    "optimizationSettings": {
+      "promptCaching": true,
+      "historyManagement": "summarized",
+      "batchProcessing": false,
+      "routingStrategy": "cost"
+    },
+    "currentUsage": {
+      "dailyTokens": 45678,
+      "dailyCost": 12.34,
+      "monthlyTokens": 1234567,
+      "monthlyCost": 345.67
+    },
+    "createdAt": "2024-01-15T10:30:00Z"
+  },
+  {
+    "Id": 2,
+    "workspaceId": 1,
+    "name": "Content Assistant",
+    "description": "AI-powered content generation and editing tool",
+    "apiKeys": [
+      {
+        "provider": "openai",
+        "keyHash": "sk-proj-ghi789jkl456"
+      }
+    ],
+    "optimizationSettings": {
+      "promptCaching": true,
+      "historyManagement": "rolling",
+      "batchProcessing": true,
+      "routingStrategy": "performance"
+    },
+    "currentUsage": {
+      "dailyTokens": 32156,
+      "dailyCost": 8.76,
+      "monthlyTokens": 987654,
+      "monthlyCost": 267.89
+    },
+    "createdAt": "2024-01-18T14:15:00Z"
+  },
+  {
+    "Id": 3,
+    "workspaceId": 1,
+    "name": "Code Helper",
+    "description": "Development assistant for code review and generation",
+    "apiKeys": [
+      {
+        "provider": "openai",
+        "keyHash": "sk-proj-mno012pqr345"
+      },
+      {
+        "provider": "anthropic",
+        "keyHash": "sk-ant-stu678vwx901"
+      }
+    ],
+    "optimizationSettings": {
+      "promptCaching": false,
+      "historyManagement": "full",
+      "batchProcessing": false,
+      "routingStrategy": "standard"
+    },
+    "currentUsage": {
+      "dailyTokens": 28934,
+      "dailyCost": 7.23,
+      "monthlyTokens": 876543,
+      "monthlyCost": 234.56
+    },
+    "createdAt": "2024-01-22T11:45:00Z"
+  },
+  {
+    "Id": 4,
+    "workspaceId": 2,
+    "name": "Test Bot Alpha",
+    "description": "Experimental chatbot for testing new features",
+    "apiKeys": [
+      {
+        "provider": "openai",
+        "keyHash": "sk-proj-test123abc456"
+      }
+    ],
+    "optimizationSettings": {
+      "promptCaching": true,
+      "historyManagement": "summarized",
+      "batchProcessing": true,
+      "routingStrategy": "cost"
+    },
+    "currentUsage": {
+      "dailyTokens": 15432,
+      "dailyCost": 4.12,
+      "monthlyTokens": 456789,
+      "monthlyCost": 123.45
+    },
+    "createdAt": "2024-02-01T09:30:00Z"
+  },
+  {
+    "Id": 5,
+    "workspaceId": 2,
+    "name": "Dev Environment Bot",
+    "description": "Development environment assistant and debugger",
+    "apiKeys": [
+      {
+        "provider": "anthropic",
+        "keyHash": "sk-ant-dev789xyz012"
+      }
+    ],
+    "optimizationSettings": {
+      "promptCaching": false,
+      "historyManagement": "rolling",
+      "batchProcessing": false,
+      "routingStrategy": "performance"
+    },
+    "currentUsage": {
+      "dailyTokens": 19876,
+      "dailyCost": 5.67,
+      "monthlyTokens": 567890,
+      "monthlyCost": 178.90
+    },
+    "createdAt": "2024-02-05T16:20:00Z"
+  },
+  {
+    "Id": 6,
+    "workspaceId": 3,
+    "name": "Client Portal Bot",
+    "description": "Customer-facing chatbot for client support",
+    "apiKeys": [
+      {
+        "provider": "openai",
+        "keyHash": "sk-proj-client456def789"
+      }
+    ],
+    "optimizationSettings": {
+      "promptCaching": true,
+      "historyManagement": "summarized",
+      "batchProcessing": true,
+      "routingStrategy": "cost"
+    },
+    "currentUsage": {
+      "dailyTokens": 67890,
+      "dailyCost": 18.45,
+      "monthlyTokens": 2034567,
+      "monthlyCost": 567.89
+    },
+    "createdAt": "2024-02-08T12:00:00Z"
+  }
+]

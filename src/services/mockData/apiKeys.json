@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "provider": "openai",
+    "keyHash": "sk-proj-abc123xyz789def456ghi012jkl345mno678pqr901stu234",
+    "projectIds": [1, 2, 3, 6],
+    "addedAt": "2024-01-15T10:30:00Z"
+  },
+  {
+    "Id": 2,
+    "provider": "anthropic",
+    "keyHash": "sk-ant-def456uvw012ghi789jkl456mno123pqr789stu456vwx123",
+    "projectIds": [1, 3, 5],
+    "addedAt": "2024-01-18T14:15:00Z"
+  },
+  {
+    "Id": 3,
+    "provider": "google",
+    "keyHash": "AIzaSyAbc123def456ghi789jkl012mno345pqr678stu901vwx",
+    "projectIds": [2, 4],
+    "addedAt": "2024-01-22T09:45:00Z"
+  },
+  {
+    "Id": 4,
+    "provider": "cohere",
+    "keyHash": "co-abc123def456ghi789jkl012mno345pqr678stu901vwx234",
+    "projectIds": [4, 5],
+    "addedAt": "2024-02-01T11:20:00Z"
+  },
+  {
+    "Id": 5,
+    "provider": "openai",
+    "keyHash": "sk-proj-backup789xyz012abc345def678ghi901jkl234mno567pqr",
+    "projectIds": [1, 2],
+    "addedAt": "2024-02-05T16:30:00Z"
+  },
+  {
+    "Id": 6,
+    "provider": "anthropic",
+    "keyHash": "sk-ant-backup345uvw678ghi901jkl234mno567pqr890stu123vwx",
+    "projectIds": [3, 6],
+    "addedAt": "2024-02-10T13:45:00Z"
+  }
+]
