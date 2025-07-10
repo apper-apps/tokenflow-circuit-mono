@@ -166,7 +166,7 @@ const ProjectDetail = () => {
                 Add API
               </Button>
             </div>
-            <div className="space-y-4">
+<div className="space-y-4">
               {project.apiKeys.map((apiKey, index) => (
                 <div
                   key={index}
@@ -179,9 +179,23 @@ const ProjectDetail = () => {
                     <div>
                       <p className="text-sm font-medium text-white capitalize">{apiKey.provider}</p>
                       <p className="text-xs text-slate-400">•••••••••{apiKey.keyHash.slice(-8)}</p>
+                      {apiKey.rotation?.enabled && (
+                        <p className="text-xs text-blue-400 flex items-center mt-1">
+                          <ApperIcon name="RotateCw" className="h-3 w-3 mr-1" />
+                          Auto-rotation: {apiKey.rotation.interval}
+                        </p>
+                      )}
                     </div>
                   </div>
-                  <Badge variant="success">Active</Badge>
+                  <div className="flex items-center space-x-2">
+                    <Badge variant="success">Active</Badge>
+                    {apiKey.rotation?.enabled && (
+                      <Badge variant="info">
+                        <ApperIcon name="RotateCw" className="h-3 w-3 mr-1" />
+                        Rotating
+                      </Badge>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
