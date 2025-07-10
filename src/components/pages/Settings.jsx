@@ -1,42 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import ApperIcon from "@/components/ApperIcon";
 import Header from "@/components/organisms/Header";
-import Card from "@/components/atoms/Card";
-import Button from "@/components/atoms/Button";
 import Switch from "@/components/atoms/Switch";
 import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
+import Card from "@/components/atoms/Card";
 import FormField from "@/components/molecules/FormField";
-import ApperIcon from "@/components/ApperIcon";
-
-const Settings = () => {
-  const [settings, setSettings] = useState({
-    notifications: {
-      email: true,
-      push: false,
-      threshold: true,
-      reports: true
-    },
-    optimization: {
-      autoCaching: true,
-      batchProcessing: false,
-      smartRouting: true
-    },
-    billing: {
-      currency: "USD",
-      alertThreshold: 1000,
-      monthlyBudget: 2000
-    }
-  });
-
-  const handleSettingChange = (category, key, value) => {
-    setSettings(prev => ({
-      ...prev,
-      [category]: {
-        ...prev[category],
-        [key]: value
+function Settings() {
+    const [settings, setSettings] = useState({
+      notifications: {
+        email: true,
+        push: true,
+        threshold: false,
+        reports: true
+      },
+      optimization: {
+        autoCaching: false,
+        batchProcessing: true,
+        smartRouting: false
+      },
+      "billing & limits": {
+        currency: "USD",
+        alertThreshold: 100,
+        monthlyBudget: 1000
       }
-    }));
-  };
+    });
+    const [isDirty, setIsDirty] = useState(false);
+  
+const handleSettingChange = (category, key, value) => {
+      setSettings(prev => ({
+        ...prev,
+        [category]: {
+          ...(prev[category] || {}),
+          [key]: value
+        }
+      }));
+      setIsDirty(true);
+    };
 
   const settingSections = [
     {
@@ -111,9 +112,9 @@ const Settings = () => {
                       </label>
                     </div>
                     <div className="flex-shrink-0">
-                      {setting.type === "switch" && (
+{setting.type === "switch" && (
                         <Switch
-                          checked={settings[section.title.toLowerCase()][setting.key]}
+                          checked={settings[section.title.toLowerCase()]?.[setting.key] || false}
                           onCheckedChange={(value) => 
                             handleSettingChange(section.title.toLowerCase(), setting.key, value)
                           }
@@ -121,23 +122,23 @@ const Settings = () => {
                       )}
                       {setting.type === "select" && (
                         <Select
-                          value={settings[section.title.toLowerCase()][setting.key]}
-                          onChange={(e) => 
-                            handleSettingChange(section.title.toLowerCase(), setting.key, e.target.value)
+                          value={settings[section.title.toLowerCase()]?.[setting.key] || setting.options[0]}
+                          onValueChange={(value) => 
+                            handleSettingChange(section.title.toLowerCase(), setting.key, value)
                           }
                           className="w-24"
                         >
-                          {setting.options.map(option => (
+                          {setting.options?.map(option => (
                             <option key={option} value={option}>{option}</option>
                           ))}
                         </Select>
                       )}
-                      {setting.type === "number" && (
+{setting.type === "number" && (
                         <input
                           type="number"
-                          value={settings[section.title.toLowerCase()][setting.key]}
+                          value={settings[section.title.toLowerCase()]?.[setting.key] || ''}
                           onChange={(e) => 
-                            handleSettingChange(section.title.toLowerCase(), setting.key, parseInt(e.target.value))
+                            handleSettingChange(section.title.toLowerCase(), setting.key, parseInt(e.target.value) || 0)
                           }
                           className="w-24 px-2 py-1 bg-slate-700 border border-slate-600 rounded text-sm text-white"
                         />
